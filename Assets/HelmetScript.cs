@@ -19,12 +19,14 @@ public class BirdScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive)
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
+            AudioManager.Instance.PlaySFX("Jump");
         }
         
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioManager.Instance.PlaySFX("Death Sound");
         logic.gameOver();
         birdIsAlive = false;
     }
